@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sofia+Sans:wght@200&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  margin: 100px 100px;
+  font-family: 'Sofia Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #cfc3c8;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 23px;
+  font-weight: 100;
+  color: rgb(243, 246, 248);
+  font-weight: bold;
 }
 
 code {
