@@ -8,7 +8,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const API_URL = "http://localhost:4000";
-  const { storeItems, isLoggedIn } = useContext(AuthContext);
+  const { storeItems, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/profile");
+    }
+  }, []);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -26,14 +33,12 @@ const Login = () => {
       .post(`${API_URL}/login`, body)
       .then((response) => {
         storeItems(response.data.token);
+        setIsLoggedIn(true);
         console.log(response);
       })
       .catch((err) => {
         console.log(err);
       });
-    if (isLoggedIn) {
-      navigate("/profile");
-    }
   };
 
   return (
