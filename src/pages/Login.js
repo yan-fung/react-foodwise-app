@@ -11,11 +11,10 @@ const Login = () => {
   const { storeItems, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (isLoggedIn) {
       navigate("/profile");
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
