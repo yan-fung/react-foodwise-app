@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,12 +10,6 @@ const Login = () => {
   const API_URL = "http://localhost:4000";
   const { storeItems, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/profile");
-    }
-  }, [isLoggedIn]);
-
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -24,15 +18,16 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const body = { email, password };
 
-    axios
+    await axios
       .post(`${API_URL}/login`, body)
       .then((response) => {
         storeItems(response.data.token);
         setIsLoggedIn(true);
+        navigate("/profile");
         console.log(response);
       })
       .catch((err) => {
