@@ -3,11 +3,22 @@ import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import ToEatCards from "../components/ToEatCards";
 
-const Profile = () => {
+const Profile = ({
+  text,
+  setText,
+  task,
+  setTask,
+  search,
+  setSearch,
+  wastedNum,
+  setWastedNum,
+  onRemovedTodo,
+  handleWastedClick,
+}) => {
   const { userID } = useContext(AuthContext);
-  const [text, setText] = useState("");
-  const [task, setTask] = useState([]);
-  const [search, setSearch] = useState([]);
+  // const [text, setText] = useState("");
+  // const [task, setTask] = useState([]);
+  // const [search, setSearch] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,23 +43,24 @@ const Profile = () => {
         .then((res) => {
           setTask([...task, res.data.text]);
         });
+      setText("");
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleRemovedTodo = async (todoId) => {
-    try {
-      await axios
-        .delete(`http://localhost:4000/deleteTodo/${todoId}`)
-        .then((res) => {
-          setTask([...task]);
-          console.log(res.data);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleRemovedTodo = async (todoId) => {
+  //   try {
+  //     await axios
+  //       .delete(`http://localhost:4000/deleteTodo/${todoId}`)
+  //       .then((res) => {
+  //         setTask([...task]);
+  //         console.log(res.data);
+  //       });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <>
@@ -67,7 +79,10 @@ const Profile = () => {
           <ToEatCards
             text={todo.text}
             todoId={todo._id}
-            onRemoveTodo={handleRemovedTodo}
+            onRemoveTodo={onRemovedTodo}
+            wastedNum={wastedNum}
+            setWastedNum={setWastedNum}
+            onIncreaseWastedClick={handleWastedClick}
           />
         </div>
       ))}
