@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import Navbar from "./Navbar";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
@@ -9,14 +10,20 @@ import IsAnonymous from "./IsAnonymous";
 import IsPrivate from "./IsPrivate";
 
 const App = () => {
+  const { isLoggedIn, authenticateUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    authenticateUser();
+  }, [isLoggedIn]);
+
   return (
     <>
       <Navbar />
-      <div className="App">
-        <h1>FOODWISE APP</h1>
-      </div>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route
+          path="/"
+          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+        />
         <Route
           path="/login"
           element={
@@ -36,11 +43,15 @@ const App = () => {
         <Route
           path="/profile"
           element={
-            <IsPrivate>
-              <Profile />
-            </IsPrivate>
+            isLoggedIn ? (
+              <IsPrivate>
+                <Profile />
+              </IsPrivate>
+            ) : (
+              <Navigate to="/" />
+            )
           }
-        ></Route>
+        />
       </Routes>
     </>
   );
