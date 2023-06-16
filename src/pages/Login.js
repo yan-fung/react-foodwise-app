@@ -8,7 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const API_URL = "http://localhost:4000";
-  const { storeItems, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { storeItems, setIsLoggedIn } = useContext(AuthContext);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -36,18 +36,23 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <h1>Login</h1>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input type="email" value={email} onChange={handleEmail} />
+    <>
+      <div className="App">
+        <h1>FOODWISE APP</h1>
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" value={password} onChange={handlePassword} />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+      <form onSubmit={handleSubmit} className="form">
+        <h1>Login</h1>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input type="email" value={email} onChange={handleEmail} />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input type="password" value={password} onChange={handlePassword} />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 };
 
