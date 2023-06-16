@@ -6,6 +6,7 @@ const AuthContext = createContext();
 const AuthProviderWrapper = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  const [userID, setUserID] = useState("");
   const [user, setUser] = useState(null);
   const API_URL = "http://localhost:4000";
 
@@ -32,7 +33,7 @@ const AuthProviderWrapper = (props) => {
     window.location.reload();
   };
 
-  const authenticateUser = () => {
+  const authenticateUser = async () => {
     const token = localStorage.getItem("token");
 
     if (!token || hasTokenExpired()) {
@@ -40,13 +41,14 @@ const AuthProviderWrapper = (props) => {
       setLoading(false);
       setUser(null);
     } else {
-      axios
+      await axios
         .get(`${API_URL}/verify`, { headers: { token } })
         .then((response) => {
           setIsLoggedIn(true);
           setUser(response.data.user);
+          setUserID(response.data.id);
           setLoading(false);
-          console.log(response);
+          console.log(response.data.id);
         })
         .catch((err) => {
           console.log(err);
@@ -63,7 +65,16 @@ const AuthProviderWrapper = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ storeItems, isLoading, isLoggedIn, setIsLoggedIn, logout }}
+      value={{
+        storeItems,
+        authenticateUser,
+        isLoading,
+        isLoggedIn,
+        setIsLoggedIn,
+        logout,
+        userID,
+        setUserID,
+      }}
     >
       {props.children}
     </AuthContext.Provider>
