@@ -11,7 +11,7 @@ import IsAnonymous from "./IsAnonymous";
 import IsPrivate from "./IsPrivate";
 
 const App = () => {
-  const { isLoggedIn, authenticateUser } = useContext(AuthContext);
+  const { isLoggedIn, authenticateUser, userID } = useContext(AuthContext);
   const [wastedNum, setWastedNum] = useState(0);
   const [text, setText] = useState("");
   const [task, setTask] = useState([]);
@@ -34,10 +34,29 @@ const App = () => {
     }
   };
 
+  const countWastedFood = async () => {
+    try {
+      await axios.get(`http://localhost:4000/count/${userID}`).then((res) => {
+        console.log(res.data.total);
+        setWastedNum(res.data.total);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleWastedClick = async (id) => {
     try {
-    } catch (err) {}
-    handleRemovedTodo(id);
+      await axios
+        .put(`http://localhost:4000/count/${id}`, { wasted: true })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+    countWastedFood();
+    // handleRemovedTodo(id);
   };
 
   return (
@@ -48,7 +67,7 @@ const App = () => {
           path="/"
           element={
             isLoggedIn ? (
-              <Home wastedNum={wastedNum} setWastedNum={setWastedNum} />
+              <Home wastedNum={wastedNum} countWastedFood={countWastedFood} />
             ) : (
               <Navigate to="/login" />
             )
