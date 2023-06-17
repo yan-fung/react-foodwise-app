@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const Home = () => {
-  return <h1>Home</h1>;
+const Home = ({ wastedNum, countWastedFood }) => {
+  useEffect(() => {
+    countWastedFood();
+  }, []);
+
+  return (
+    <div className="home">
+      <h1>Weekly Wasted Number</h1>
+
+      {wastedNum}
+    </div>
+  );
 };
 
 export default Home;
