@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import ToEatCards from "../components/ToEatCards";
@@ -16,9 +16,6 @@ const Profile = ({
   handleWastedClick,
 }) => {
   const { userID } = useContext(AuthContext);
-  // const [text, setText] = useState("");
-  // const [task, setTask] = useState([]);
-  // const [search, setSearch] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -48,19 +45,6 @@ const Profile = ({
       console.log(err);
     }
   };
-
-  // const handleRemovedTodo = async (todoId) => {
-  //   try {
-  //     await axios
-  //       .delete(`http://localhost:4000/deleteTodo/${todoId}`)
-  //       .then((res) => {
-  //         setTask([...task]);
-  //         console.log(res.data);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <>
