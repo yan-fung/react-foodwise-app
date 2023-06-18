@@ -24,7 +24,7 @@ const App = () => {
   const handleRemovedTodo = async (todoId) => {
     try {
       await axios
-        .delete(`http://localhost:4000/deleteTodo/${todoId}`)
+        .put(`http://localhost:4000/deleteTodo/${todoId}`, { display: false })
         .then((res) => {
           setTask([...task]);
           console.log(res.data);
@@ -48,7 +48,10 @@ const App = () => {
   const handleWastedClick = async (id) => {
     try {
       await axios
-        .put(`http://localhost:4000/count/${id}`, { wasted: true })
+        .put(`http://localhost:4000/count/${id}`, {
+          wasted: true,
+          display: false,
+        })
         .then((res) => {
           console.log(res);
         });
@@ -56,7 +59,7 @@ const App = () => {
       console.log(err);
     }
     countWastedFood();
-    // handleRemovedTodo(id);
+    setTask([...task]);
   };
 
   return (
