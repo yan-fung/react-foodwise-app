@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
-import Navbar from "./Navbar";
+import NavbarComponent from "./Navbar";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Home from "../pages/Home";
@@ -64,15 +64,13 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      <NavbarComponent />
       <Routes>
         <Route
           path="/"
           element={
-            isLoggedIn ? (
+            isLoggedIn && (
               <Home wastedNum={wastedNum} countWastedFood={countWastedFood} />
-            ) : (
-              <Navigate to="/login" />
             )
           }
         />
@@ -93,7 +91,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/profile"
+          path="/foods"
           element={
             isLoggedIn ? (
               <IsPrivate>
@@ -111,7 +109,7 @@ const App = () => {
                 />
               </IsPrivate>
             ) : (
-              <Navigate to="/" />
+              <Navigate to="/login" />
             )
           }
         />
