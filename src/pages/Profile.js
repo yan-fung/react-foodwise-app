@@ -87,12 +87,12 @@ const Profile = ({
         style={{
           position: "absolute",
           top: "80%",
-          left: "50%",
+          left: "80%",
           transform: "translate(-50%, -50%)",
         }}
         className="pt-20"
       >
-        <img src={peach} width={300} height={50} />
+        <img src={peach} width={300} height={50} className="hidden md:block" />
       </div>
     </>
   );
