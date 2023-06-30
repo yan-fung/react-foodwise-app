@@ -7,7 +7,7 @@ const ToEatCards = ({ text, todoId, onRemoveTodo, onIncreaseWastedClick }) => {
       <span className="text-xl">{text}</span>
       <div className="pr-3 pl-3">
         <Button
-          className="bg-rose-400 "
+          className="bg-rose-400 hover:bg-rose-500"
           type="button"
           onClick={() => onIncreaseWastedClick(todoId)}
         >
