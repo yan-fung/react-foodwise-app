@@ -28,7 +28,7 @@ const Login = () => {
       .then((response) => {
         storeItems(response.data.token);
         setIsLoggedIn(true);
-        navigate("/profile");
+        navigate("/foods");
         console.log(response);
       })
       .catch((err) => {
@@ -38,8 +38,10 @@ const Login = () => {
 
   return (
     <>
-      <div className="text-center pt-10">
-        <h1 className="text-gray-900 dark:text-gray-300 text-xl">LOGIN</h1>
+      <div className="text-center pt-40">
+        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-teal-200">
+          LOGIN
+        </h1>
       </div>
       <div className="flex justify-center">
         <form
@@ -81,24 +83,6 @@ const Login = () => {
         </form>
       </div>
     </>
-
-    // <>
-    //   <div className="App">
-    //     <h1>FOODWISE APP</h1>
-    //   </div>
-    //   <form onSubmit={handleSubmit} className="form">
-    //     <h1>Login</h1>
-    //     <div>
-    //       <label htmlFor="email">Email</label>
-    //       <input type="email" value={email} onChange={handleEmail} />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="password">Password</label>
-    //       <input type="password" value={password} onChange={handlePassword} />
-    //     </div>
-    //     <button type="submit">Submit</button>
-    //   </form>
-    // </>
   );
 };
 
