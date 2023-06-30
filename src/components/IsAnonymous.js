@@ -10,7 +10,7 @@ const IsAnonymous = (props) => {
     return <p>Loading...</p>;
   }
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/foods" />;
   } else {
     return props.children;
   }
