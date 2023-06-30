@@ -1,53 +1,50 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import "../styles/navbar.css";
+import { Navbar } from "flowbite-react";
 
-const Navbar = () => {
+const NavbarComponent = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
+
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar__logo">
-        <h1>FOODWISE</h1>
-      </Link>
-      {!isLoggedIn && (
-        <ul className="navbar-links">
-          <li className="narbar-links__item">
-            <Link to="/" className="narbar-links__text">
-              Home
-            </Link>
-          </li>
-          <li className="narbar-links__item">
-            <Link to="/signup" className="narbar-links__text">
+    <Navbar fluid rounded>
+      <Navbar.Brand>
+        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-teal-300">
+          FOODWISE
+        </h1>
+      </Navbar.Brand>
+      <div className="flex md:order-2">
+        <Navbar.Toggle />
+      </div>
+      <Navbar.Collapse>
+        {!isLoggedIn && (
+          <>
+            <Navbar.Link className="text-lg" href="/signup">
               Sign up
-            </Link>
-          </li>
-          <li className="narbar-links__item">
-            <Link to="/login" className="narbar-links__text">
+            </Navbar.Link>
+            <Navbar.Link className="text-lg" href="/login">
               Login
-            </Link>
-          </li>
-        </ul>
-      )}
-      {isLoggedIn && (
-        <ul className="navbar-links">
-          <li className="narbar-links__item">
-            <Link to="/" className="narbar-links__text">
+            </Navbar.Link>
+          </>
+        )}
+        {isLoggedIn && (
+          <>
+            <Navbar.Link className="text-lg" href="/">
               Home
-            </Link>
-          </li>
-          <li className="narbar-links__item">
-            <Link to="/profile" className="narbar-links__text">
-              Profile
-            </Link>
-          </li>
-          <li className="narbar-links__item">
-            <button onClick={() => logout()}>Logout</button>
-          </li>
-        </ul>
-      )}
-    </nav>
+            </Navbar.Link>
+            <Navbar.Link className="text-lg" href="/foods">
+              Foods
+            </Navbar.Link>
+            <Navbar.Link
+              className="text-lg hover:cursor-pointer"
+              onClick={() => logout()}
+            >
+              Logout
+            </Navbar.Link>
+          </>
+        )}
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavbarComponent;
