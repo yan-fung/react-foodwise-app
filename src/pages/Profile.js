@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
+import { Button, TextInput } from "flowbite-react";
 import axios from "axios";
 import ToEatCards from "../components/ToEatCards";
+import peach from "../assets/giphy.gif";
 
 const Profile = ({
   text,
@@ -48,28 +50,50 @@ const Profile = ({
 
   return (
     <>
-      <>
-        <>
-          <h1>List of Foods</h1>
-        </>
-        <form onSubmit={handleSubmit} className="form">
-          <label htmlFor="text">Enter the item</label>
-          <input type="text" value={text} onChange={handleText} />
-          <button type="submit">Add</button>
-        </form>
-      </>
-      {search.map((todo) => (
-        <div key={todo._id} className="item">
-          <ToEatCards
-            text={todo.text}
-            todoId={todo._id}
-            onRemoveTodo={onRemovedTodo}
-            wastedNum={wastedNum}
-            setWastedNum={setWastedNum}
-            onIncreaseWastedClick={handleWastedClick}
+      <div className="text-center p-5">
+        <h1>List of Foods</h1>
+      </div>
+      <div className="flex flex-col items-center">
+        <form onSubmit={handleSubmit} className="pb-5 flex items-center">
+          <TextInput
+            id="email1"
+            placeholder="Enter the item..."
+            required
+            type="text"
+            value={text}
+            onChange={handleText}
+            className="pr-2"
           />
+          <Button gradientDuoTone="purpleToBlue" size="sm" type="submit">
+            Add
+          </Button>
+        </form>
+        <div className="flex flex-col">
+          {search.map((todo) => (
+            <div key={todo._id} className="item">
+              <ToEatCards
+                text={todo.text}
+                todoId={todo._id}
+                onRemoveTodo={onRemovedTodo}
+                wastedNum={wastedNum}
+                setWastedNum={setWastedNum}
+                onIncreaseWastedClick={handleWastedClick}
+              />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "80%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+        className="pt-20"
+      >
+        <img src={peach} width={300} height={50} />
+      </div>
     </>
   );
 };
