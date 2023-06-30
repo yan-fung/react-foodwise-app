@@ -27,7 +27,7 @@ const Home = ({ wastedNum, countWastedFood }) => {
                 left: "40%",
                 transform: "translate(-30%, -50%)",
               }}
-              className="text-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-teal-800"
+              className="text-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-teal-400"
             >
               <h1>Weekly Wasted Number</h1>
               {wastedNum}
