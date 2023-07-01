@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Button, TextInput } from "flowbite-react";
 import axios from "axios";
 import ToEatCards from "../components/ToEatCards";
 import peach from "../assets/giphy.gif";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const Profile = ({
   text,
@@ -18,6 +21,7 @@ const Profile = ({
   handleWastedClick,
 }) => {
   const { userID } = useContext(AuthContext);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -34,15 +38,22 @@ const Profile = ({
     console.log(text);
   };
 
+  const handleDateChange = (date) => {
+    const selectedDate = new Date(date);
+    setSelectedDate(selectedDate);
+    console.log(selectedDate);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios
-        .put("http://localhost:4000/createTodo", { text, userID })
+        .put("http://localhost:4000/createTodo", { text, selectedDate, userID })
         .then((res) => {
           setTask([...task, res.data.text]);
         });
       setText("");
+      setSelectedDate("");
     } catch (err) {
       console.log(err);
     }
@@ -68,6 +79,11 @@ const Profile = ({
             Add
           </Button>
         </form>
+        <DatePicker
+          className="text-center w-28 rounded-md"
+          selected={selectedDate}
+          onChange={handleDateChange}
+        />
         <div className="flex flex-col">
           {search.map((todo) => (
             <div key={todo._id} className="item">
