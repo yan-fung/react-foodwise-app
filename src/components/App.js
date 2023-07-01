@@ -69,8 +69,12 @@ const App = () => {
         <Route
           path="/"
           element={
-            isLoggedIn && (
+            isLoggedIn ? (
               <Home wastedNum={wastedNum} countWastedFood={countWastedFood} />
+            ) : (
+              <IsAnonymous>
+                <Login />
+              </IsAnonymous>
             )
           }
         />
