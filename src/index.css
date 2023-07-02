@@ -10,5 +10,9 @@ body,
 .app {
   height: 100%;
   background-color: rgb(240, 238, 238);
+  background-image: url('/public/assets/wallpaper.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   @apply text-black;
 }
