@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Navbar } from "flowbite-react";
+import logo from "../assets/logo.png";
 
 const NavbarComponent = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
@@ -8,9 +9,7 @@ const NavbarComponent = () => {
   return (
     <Navbar fluid rounded>
       <Navbar.Brand>
-        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-teal-300">
-          FOODWISE
-        </h1>
+        <img src={logo} className="w-60" />
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Navbar.Toggle />
@@ -32,7 +31,7 @@ const NavbarComponent = () => {
               Home
             </Navbar.Link>
             <Navbar.Link className="text-lg" href="/foods">
-              Foods
+              Food
             </Navbar.Link>
             <Navbar.Link
               className="text-lg hover:cursor-pointer"
