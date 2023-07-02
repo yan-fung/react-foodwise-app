@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import axios from "axios";
+import icon from "../assets/login.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,10 +39,14 @@ const Login = () => {
 
   return (
     <>
-      <div className="text-center pt-40">
-        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-teal-200">
+      <div className="text-center">
+        <div className="flex justify-center items-center">
+          <img src={icon} className="w-60" />
+        </div>
+
+        {/* <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-teal-200">
           LOGIN
-        </h1>
+        </h1> */}
       </div>
       <div className="flex justify-center">
         <form
