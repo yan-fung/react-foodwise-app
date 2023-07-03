@@ -22,15 +22,14 @@ const Profile = ({
 }) => {
   const { userID } = useContext(AuthContext);
   const [selectedDate, setSelectedDate] = useState(null);
+  const API_URL = "https://foodwise-api.onrender.com";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    axios
-      .get(`http://localhost:4000/getTodo/`, { headers: { token } })
-      .then((res) => {
-        console.log(res.data.todos);
-        setSearch(res.data.todos);
-      });
+    axios.get(`${API_URL}/getTodo/`, { headers: { token } }).then((res) => {
+      console.log(res.data.todos);
+      setSearch(res.data.todos);
+    });
   }, [task]);
 
   const handleText = (e) => {
@@ -48,7 +47,7 @@ const Profile = ({
     e.preventDefault();
     try {
       await axios
-        .put("http://localhost:4000/createTodo", { text, selectedDate, userID })
+        .put(`${API_URL}/createTodo`, { text, selectedDate, userID })
         .then((res) => {
           setTask([...task, res.data.text]);
         });
