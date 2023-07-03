@@ -25,13 +25,13 @@ const ToEatCards = ({
       <>
         <div className="pb-3 items-center justify-left">
           <div className="grid grid-cols-4">
-            <div className="text-md">{text}</div>
+            <div className="text-md pt-2">{text}</div>
             {typeof daysRemaining === "number" && !isNaN(daysRemaining) ? (
               <>
-                <span className="text-center">{daysRemaining}</span>
+                <span className="text-center pt-2">{daysRemaining}</span>
                 <div className="pr-3 pl-3">
                   <Button
-                    className="bg-rose-400 hover:bg-rose-500 w-16"
+                    className="bg-rose-400 hover:bg-rose-500 w-16 justify-center"
                     type="button"
                     onClick={() => onIncreaseWastedClick(todoId)}
                   >
