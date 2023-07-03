@@ -11,6 +11,7 @@ import IsAnonymous from "./IsAnonymous";
 import IsPrivate from "./IsPrivate";
 
 const App = () => {
+  const API_URL = "https://foodwise-api.onrender.com";
   const { isLoggedIn, authenticateUser, userID } = useContext(AuthContext);
   const [wastedNum, setWastedNum] = useState(0);
   const [text, setText] = useState("");
@@ -24,7 +25,7 @@ const App = () => {
   const handleRemovedTodo = async (todoId) => {
     try {
       await axios
-        .put(`http://localhost:4000/deleteTodo/${todoId}`, { display: false })
+        .put(`${API_URL}/deleteTodo/${todoId}`, { display: false })
         .then((res) => {
           setTask([...task]);
           console.log(res.data);
@@ -36,7 +37,7 @@ const App = () => {
 
   const countWastedFood = async () => {
     try {
-      await axios.get(`http://localhost:4000/count/${userID}`).then((res) => {
+      await axios.get(`${API_URL}/count/${userID}`).then((res) => {
         console.log(res.data.total);
         setWastedNum(res.data.total);
       });
@@ -48,7 +49,7 @@ const App = () => {
   const handleWastedClick = async (id) => {
     try {
       await axios
-        .put(`http://localhost:4000/count/${id}`, {
+        .put(`${API_URL}/count/${id}`, {
           wasted: true,
           display: false,
         })

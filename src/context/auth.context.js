@@ -8,7 +8,7 @@ const AuthProviderWrapper = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [userID, setUserID] = useState("");
   const [user, setUser] = useState(null);
-  const API_URL = "http://localhost:4000";
+  const API_URL = "https://foodwise-api.onrender.com";
 
   const storeItems = (token) => {
     localStorage.setItem("token", token);

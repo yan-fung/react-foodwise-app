@@ -7,7 +7,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL = "http://localhost:4000";
+  const API_URL = "https://foodwise-api.onrender.com";
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
