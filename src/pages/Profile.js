@@ -34,7 +34,7 @@ const Profile = ({
 
   const handleText = (e) => {
     setText(e.target.value);
-    console.log(text);
+    // console.log(text);
   };
 
   const handleDateChange = (date) => {
