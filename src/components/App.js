@@ -28,7 +28,7 @@ const App = () => {
         .put(`${API_URL}/deleteTodo/${todoId}`, { display: false })
         .then((res) => {
           setTask([...task]);
-          console.log(res.data);
+          // console.log(res.data);
         });
     } catch (err) {
       console.log(err);
@@ -38,7 +38,7 @@ const App = () => {
   const countWastedFood = async () => {
     try {
       await axios.get(`${API_URL}/count/${userID}`).then((res) => {
-        console.log(res.data.total);
+        // console.log(res.data.total);
         setWastedNum(res.data.total);
       });
     } catch (err) {
@@ -54,7 +54,7 @@ const App = () => {
           display: false,
         })
         .then((res) => {
-          console.log(res);
+          console.log(res.data.wasted);
         });
     } catch (err) {
       console.log(err);
