@@ -40,7 +40,7 @@ const Profile = ({
   const handleDateChange = (date) => {
     const selectedDate = new Date(date);
     setSelectedDate(selectedDate);
-    console.log(selectedDate);
+    // console.log(selectedDate);
   };
 
   const handleSubmit = async (e) => {
