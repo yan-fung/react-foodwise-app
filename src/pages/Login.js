@@ -30,7 +30,7 @@ const Login = () => {
         storeItems(response.data.token);
         setIsLoggedIn(true);
         navigate("/foods");
-        console.log(response);
+        // console.log(response);
       })
       .catch((err) => {
         console.log(err);

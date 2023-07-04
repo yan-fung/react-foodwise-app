@@ -48,7 +48,7 @@ const AuthProviderWrapper = (props) => {
           setUser(response.data.user);
           setUserID(response.data.id);
           setLoading(false);
-          console.log(response.data.id);
+          // console.log(response.data.id);
         })
         .catch((err) => {
           console.log(err);
