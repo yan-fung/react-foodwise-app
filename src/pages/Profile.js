@@ -27,8 +27,8 @@ const Profile = ({
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.get(`${API_URL}/getTodo/`, { headers: { token } }).then((res) => {
-      console.log(res.data.todos);
-      // setSearch(res.data.todos);
+      // console.log(res.data.todos);
+      setSearch(res.data.todos);
     });
   }, [task]);
 
