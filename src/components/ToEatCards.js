@@ -28,7 +28,13 @@ const ToEatCards = ({
             <div className="text-md pt-2">{text}</div>
             {typeof daysRemaining === "number" && !isNaN(daysRemaining) ? (
               <>
-                <span className="text-center pt-2">{daysRemaining}</span>
+                {daysRemaining < 1 ? (
+                  <span className="text-center pt-2 font-semibold text-rose-600">
+                    Expired
+                  </span>
+                ) : (
+                  <span className="text-center pt-2">{daysRemaining}</span>
+                )}
                 <div className="pr-3 pl-3">
                   <Button
                     className="bg-rose-400 hover:bg-rose-500 w-16 justify-center"
@@ -46,7 +52,9 @@ const ToEatCards = ({
                   Consumed
                 </Button>
               </>
-            ) : null}
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </>
