@@ -1,5 +1,6 @@
 # 🍙 🍕 🍤 React Foodwise App
-The Foodwise App is specifically designed to encourage and motivate individuals to proactively reduce food waste in their everyday lives.
+The Foodwise App is specifically designed to encourage and motivate people to proactively reduce food waste in their everyday lives. [(bankend repo here)](https://github.com/yan-fung/backend-foodwise-app)
+
 DEMO: https://react-foodwise-app.vercel.app/
 
 ### Desktop view
