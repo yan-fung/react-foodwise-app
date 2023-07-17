@@ -48,10 +48,13 @@ const App = () => {
 
   const handleWastedClick = async (id) => {
     try {
+      const current = new Date().toISOString();
+      console.log(current);
       await axios
         .put(`${API_URL}/count/${id}`, {
           wasted: true,
           display: false,
+          date: current,
         })
         .then((res) => {
           console.log(res.data.wasted);
