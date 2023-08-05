@@ -54,7 +54,7 @@ const App = () => {
         .put(`${API_URL}/count/${id}`, {
           wasted: true,
           display: false,
-          date: current,
+          wastedDate: current,
         })
         .then((res) => {
           console.log(res.data.wasted);
